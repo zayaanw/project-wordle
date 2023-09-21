@@ -22,6 +22,7 @@ html {
 */
 body {
   font-family: sans-serif;
+  background-color: hsl(0, 71%, 99%);
 }
 
 @media (max-height: 600px) {
