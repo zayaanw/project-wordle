@@ -17,11 +17,9 @@ function Game() {
     setGuesses([...guesses, guessLabel]);
   }
 
-  console.log(guesses);
-
   return (
     <>
-      <GuessResults guesses={guesses} />
+      <GuessResults guesses={guesses} answer={answer} />
       <GuessInput handleSubmit={handleSubmit} />
     </>
   );

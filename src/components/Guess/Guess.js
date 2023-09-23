@@ -1,28 +1,28 @@
 import React from "react";
-import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 import { range } from "../../utils";
+import { checkGuess } from "../../game-helpers";
 
-function Guess({ string }) {
-  let arr = range(0, 5).map((option) => (option = ""));
-
-  const stringArr = [];
-
-  if (string) {
-    string && string.split("").forEach((c) => stringArr.push(c));
-    arr = stringArr;
-  }
-
-  console.log({ stringArr });
-
-  console.log({ arr });
-  // string.split("").forEach((c) => arr.push(c));
-  console.log(string);
+function Guess({ string, answer }) {
+  const wordle = () => {
+    if (!string) {
+      return range(5).map((_, index) => (
+        <span key={index} className={`cell`}>
+          {undefined}
+        </span>
+      ));
+    } else {
+      const results = checkGuess(string, answer);
+      return results.map(({ letter, status }, index) => (
+        <span key={index} className={`cell ${status}`}>
+          {letter}
+        </span>
+      ));
+    }
+  };
 
   return (
     <>
-      {arr.map((character) => (
-        <span className="cell">{character}</span>
-      ))}
+      <p className="guess">{wordle()}</p>
     </>
   );
 }
