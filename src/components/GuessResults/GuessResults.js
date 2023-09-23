@@ -3,16 +3,20 @@ import Guess from "../Guess/Guess";
 import { range } from "../../utils";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
-function UsersGuess({ guess }) {
-  const TotalGuesses = range(0, NUM_OF_GUESSES_ALLOWED - 1);
+function UsersGuess({ guesses }) {
+  let TotalGuesses = range(0, NUM_OF_GUESSES_ALLOWED - 1);
+  TotalGuesses = TotalGuesses.map((_, index) =>
+    guesses[index] !== undefined ? guesses[index] : ""
+  );
+
+  console.log(TotalGuesses);
 
   return (
     <div className="guess-results">
-      {/* {guess.map(({ guessLabel, id }) => (
-        <p key={id}>{guessLabel}</p>
-      ))} */}
-      {TotalGuesses.map((option) => (
-        <Guess />
+      {TotalGuesses.map((string, index) => (
+        <p key={index} className="guess">
+          <Guess string={string} />
+        </p>
       ))}
     </div>
   );

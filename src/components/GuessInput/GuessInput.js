@@ -15,6 +15,8 @@ function GuessInput({ handleSubmit }) {
       <label htmlFor="guess-input">Enter guess:</label>
       <input
         id="guess-input"
+        maxLength={5}
+        title="5 letter word"
         pattern="[A-Z]{5}"
         type="text"
         value={guessLabel}
